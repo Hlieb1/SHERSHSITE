@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SHERSH</title>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <section class="video-hero">
+    <video autoplay muted loop playsinline preload="auto">
+      <source src="video/video.MP4" type="video/mp4">
+      Ваш браузер не підтримує відео.
+    </video>
+    <div class="video-overlay"></div>
+
+    <div class="hero-text-glass-left">
+      <h2>ПРО SHERSH</h2>
+      <p>
+      SHERSH — українська інженерна компанія, що базується у Запоріжжі та спеціалізується 
+      на розробці й виробництві безпілотних літальних апаратів.
+      </p>
+      <p>
+      Наша діяльність спрямована на створення ефективних, надійних і технологічно 
+      досконалих рішень для оборонного та спеціального застосування.
+      </p>
+      <p>
+      Ми поєднуємо науковий підхід, точну інженерію та практичний досвід, 
+      аби забезпечити Збройні Сили України сучасними засобами повітряної підтримки.
+      </p>
+    </div>
+
+    <!-- ===== ХЕДЕР ===== -->
+    <header class="site-header">
+      <div class="container header-flex">
+        <div class="logo">
+          <a href="index.html">
+            <img src="img/logo.png" alt="SHERSH logo">
+          </a>
+        </div>
+        <nav>
+          <ul class="nav-links">
+            <li><a href="catalog.html">КАТАЛОГ</a></li>
+            <li><a href="contacts.html">КОНТАКТИ</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+  </section>
+
+  <!-- ===== ПЕРШИЙ ПОВЕРХ ===== -->
+  <section class="first-floor">
+    <div class="container narrow">
+      <h1 class="main-title">ТЕХНОЛОГІЇ В НЕБІ — ПЕРЕВАГА НА ЗЕМЛІ</h1>
+      <p class="lead">
+        Наші системи створюються на основі реального бойового досвіду, аналітики і сучасних принципів автоматизації.
+        Ми не просто виготовляємо БПЛА — ми будуємо інтелектуальну інфраструктуру, здатну передбачати, реагувати та підтримувати рішучість захисників.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== ДРУГИЙ ПОВЕРХ ===== -->
+  <section class="second-floor">
+    <div class="container cards">
+      <article class="card">
+        <h3>РОЗРОБЛЯЄМО</h3>
+        <p>нові платформи БПЛА і системи керування, адаптовані до реальних бойових умов</p>
+      </article>
+
+      <article class="card">
+        <h3>ВПРОВАДЖУЄМО</h3>
+        <p>інноваційні технології в систему оборони, щоб кожен підрозділ отримав перевагу в швидкості, точності та автономності</p>
+      </article>
+
+      <article class="card">
+        <h3>ПІДТРИМУЄМО</h3>
+        <p>військові й освітні ініціативи, що підвищують технологічну спроможність України</p>
+      </article>
+    </div>
+  </section>
+
+  <div id="logo-loader">
+    <img src="img/logo.png" alt="SHERSH logo" class="loader-logo">
+  </div>
+
+  <script src="js/script.js"></script>
+  <script>
+    window.addEventListener("load", () => {
+    const loader = document.getElementById("logo-loader");
+    setTimeout(() => {
+    loader.style.display = "none";
+    document.body.classList.add("loaded");
+    }, 3000); 
+    });
+  </script>
+
+
+</body>
+</html>
