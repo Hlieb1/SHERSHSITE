@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/catalog.css" />
+  <title>Каталог | SHERSH</title>
+</head>
+
+<body>
+
+<header class="site-header">
+  <div class="container header-flex">
+    <div class="logo">
+      <a href="index.html">
+        <img src="/img/logo.png" alt="SHERSH logo">
+      </a>
+    </div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="catalog.html">КАТАЛОГ</a></li>
+        <li><a href="contacts.html">КОНТАКТИ</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="catalog">
+  <h1 class="catalog-title">КАТАЛОГ</h1>
+
+  <!-- ========== SHERSH-8 CARD ========== -->
+  <div class="product-card">
+    <div class="media-section">
+      <div class="media-slide active">
+        <img src="/img/002.jpg" alt="SHERSH-8">
+      </div>
+      <div class="media-slide">
+        <img src="/img/003.jpg" alt="SHERSH-8">
+      </div>
+      <div class="media-slide">
+        <video src="/video/video1.mp4" autoplay muted loop playsinline></video>
+      </div>
+      <div class="media-slide">
+        <video src="/video/video2.mp4" autoplay muted loop playsinline></video>
+      </div>
+
+      <button class="nav prev">‹</button>
+      <button class="nav next">›</button>
+    </div>
+
+    <div class="info-section">
+      <h2>SHERSH-8</h2>
+      <ul id="drone-specs"></ul>
+    </div>
+  </div>
+
+  <!-- ========== CATAPULT CARD ========== -->
+  <div class="product-card">
+    <div class="media-section">
+      <div class="media-slide active">
+        <img src="/img/catapult.jpg" alt="Катапульта SHERSH">
+      </div>
+      <div class="media-slide">
+        <img src="/img/catapult2.jpg" alt="Катапульта SHERSH">
+      </div>
+
+      <button class="nav prev">‹</button>
+      <button class="nav next">›</button>
+    </div>
+
+    <div class="info-section2">
+      <h2>Катапульта</h2>
+      <ul id="catapult-specs"></ul>
+    </div>
+  </div>
+
+</section>
+
+<script src="/js/catalog.js"></script>
+</body>
+</html>
