@@ -1,0 +1,496 @@
+.catalog {
+  padding: 160px 5% 120px;
+  background: linear-gradient(to bottom, #2b2b2b 0%, #141414 60%, #0a0a0a 100%);
+  color: #f5f0e6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.catalog-title {
+  font-size: 72px;
+  text-align: center;
+  margin-bottom: 80px;
+  margin-top: 80px; /* 👉 опускає вниз */
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #ffffff;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.15),
+               0 5px 25px rgba(0, 0, 0, 0.6);
+  position: relative;
+  animation: fadeSlideDown 1.4s ease both;
+  transition: all 0.5s ease;
+}
+
+/* ефект “живого” підсвічування при наведенні */
+.catalog-title:hover {
+  color: #ffffff;
+  text-shadow: 0 0 25px rgba(255, 255, 255, 0.5),
+               0 0 60px rgba(255, 255, 255, 0.3);
+  letter-spacing: 4px;
+  transform: translateY(4px);
+}
+
+/* анімація плавної появи */
+@keyframes fadeSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* ===== КОНТЕЙНЕР КАРТКИ ===== */
+.product-card {
+  display: flex;
+  align-items: stretch;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 1800px; /* ширше */
+  margin: 0 auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.75);
+}
+
+/* ===== МЕДІА-СЕКЦІЯ (ФОТО / ВІДЕО) ===== */
+.media-section {
+  position: relative;
+  flex: 1.7; /* більше місця для фото */
+  min-height: 650px;
+  overflow: hidden;
+  background: #000;
+}
+
+.media-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.media-slide.active {
+  opacity: 1;
+}
+
+.media-slide img,
+.media-slide video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* ✅ тепер зображення заповнює весь блок */
+  object-position: center; /* центрує кадр */
+  display: block;
+}
+
+
+/* ===== СТРІЛКИ ===== */
+.nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  font-size: 38px;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s ease;
+  backdrop-filter: blur(8px);
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.08);
+}
+
+/* м’яке світіння при наведенні */
+.nav::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.2) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* блиск — тепер ідеально рівна смуга */
+.nav::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.25) 45%,
+    rgba(255, 255, 255, 0.35) 50%,
+    rgba(255, 255, 255, 0.25) 55%,
+    transparent 100%
+  );
+  transition: left 0.7s ease;
+}
+
+.nav:hover::after {
+  left: 100%;
+}
+
+.nav:hover::before {
+  opacity: 1;
+}
+
+.nav:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.4);
+  transform: translateY(-50%) scale(1.15);
+}
+
+.nav:active {
+  transform: translateY(-50%) scale(0.9);
+  box-shadow: 0 0 10px rgba(255,255,255,0.2);
+}
+
+.nav.prev { left: 25px; }
+.nav.next { right: 25px; }
+
+/* ===== ПЛАВНА ПОЯВА ВІДЕО ТА ІНФО-СЕКЦІЇ ===== */
+.media-section,
+.info-section {
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeInUp 1.4s ease forwards;
+}
+
+/* затримка для синхронного, але м’якого ефекту */
+.media-section {
+  animation-delay: 0.3s;
+}
+
+.info-section {
+  animation-delay: 0.5s;
+}
+
+/* ключові кадри анімації */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+/* ===== ІНФОРМАЦІЙНА СЕКЦІЯ ===== */
+.info-section {
+  flex: 1.1;
+  padding: 70px 60px;
+  background: rgba(20, 20, 20, 0.7);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+  transition: background 0.4s ease;
+}
+
+.info-section:hover {
+  background: rgba(25, 25, 25, 0.8); /* легке затемнення при наведенні */
+}
+
+.info-section h2 {
+  font-size: 70px;
+  margin-bottom: 35px;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.25);
+  letter-spacing: 2px;
+  position: relative;
+  transition: all 0.4s ease;
+  cursor: default;
+  margin-top: -20px;
+}
+
+/* 💡 Ефект підсвічування заголовка при наведенні */
+.info-section h2::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, #fff, #383838);
+  transition: width 0.4s ease;
+  border-radius: 3px;
+}
+
+.info-section h2:hover {
+  text-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+.info-section h2:hover::after {
+  width: 80%;
+}
+
+/* ===== Список характеристик ===== */
+.info-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.info-section li {
+  font-size: 19px;
+  color: #dcdcdc;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 10px 0;
+  line-height: 1.8;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.info-section li strong {
+  color: #fff;
+  transition: color 0.3s ease;
+}
+
+/* ✨ Ефект підсвічування при наведенні на пункт */
+.info-section li:hover {
+  color: #fff;
+  transform: translateX(6px);
+}
+
+.info-section li:hover strong {
+  color: #d2d2d2;
+}
+
+/* ===== АДАПТИВ ===== */
+@media (max-width: 1200px) {
+  .product-card {
+    flex-direction: column;
+  }
+
+  .media-section {
+    min-height: 400px;
+  }
+
+  .info-section {
+    padding: 40px;
+  }
+
+  .info-section h2 {
+    font-size: 38px;
+  }
+
+  .info-section li {
+    font-size: 18px;
+  }
+}
+
+/* ===== НОВИЙ ЕФЕКТ ПРОЯВЛЕННЯ ВСЬОГО БЛОКУ ===== */
+.product-card {
+  opacity: 0;
+  transform: scale(0.96) translateY(40px);
+  filter: blur(8px);
+  animation: revealCard 1.8s ease forwards;
+}
+
+@keyframes revealCard {
+  0% {
+    opacity: 0;
+    transform: scale(0.96) translateY(40px);
+    filter: blur(8px);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.01) translateY(10px);
+    filter: blur(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* ===== ВСЕРЕДИНІ: ПОЯВА ВІДЕО ТА ІНФО ===== */
+.media-section,
+.info-section {
+  opacity: 0;
+  transform: translateY(25px);
+  animation: fadeUpInner 1.2s ease forwards;
+}
+
+.media-section {
+  animation-delay: 0.6s;
+}
+
+.info-section {
+  animation-delay: 0.9s;
+}
+
+@keyframes fadeUpInner {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== СПОКІЙНИЙ КІНО-ЕФЕКТ ПОЯВЛЕННЯ ===== */
+.product-card {
+  position: relative;
+  opacity: 0;
+  transform: translateY(60px);
+  filter: brightness(0.4) blur(6px);
+  animation: smoothFadeIn 1.6s ease-out forwards;
+}
+
+.product-card:nth-of-type(2) {
+  margin-top: 60px;
+}
+
+@keyframes smoothFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(60px);
+    filter: brightness(0.4) blur(6px);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translateY(20px);
+    filter: brightness(0.9) blur(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: brightness(1) blur(0);
+  }
+}
+
+/* ===== ПОЯВА ВНУТРІШНІХ ЕЛЕМЕНТІВ ===== */
+.media-section,
+.info-section {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: innerFade 1.3s ease-out forwards;
+}
+
+.media-section {
+  animation-delay: 0.6s;
+}
+
+.info-section {
+  animation-delay: 0.9s;
+}
+
+@keyframes innerFade {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== НЕ ЗМІЩУЙ transform ПРИ HOVER ===== */
+.product-card:hover {
+  transform: none;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.75);
+  transition: box-shadow 0.4s ease;
+}
+.info-section2 {
+  flex: 1.1;
+  padding: 40px 60px 70px; /* стало менше зверху */
+  background: rgba(25, 25, 25, 0.75);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+  transition: background 0.4s ease;
+  border-left: 1px solid rgba(255, 255, 255, 0.05);
+  animation: innerFade 1.4s ease-out forwards;
+  animation-delay: 1.2s;
+}
+
+.info-section2:hover {
+  background: rgba(30, 30, 30, 0.85);
+}
+
+.info-section2 h2 {
+  font-size: 56px;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 0 0 18px rgba(255, 255, 255, 0.25);
+  letter-spacing: 2px;
+  position: relative;
+}
+
+.info-section2 h2::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, #fff, #353535);
+  transition: width 0.4s ease;
+  border-radius: 3px;
+}
+
+.info-section2 h2:hover::after {
+  width: 70%;
+}
+
+.info-section2 ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.info-section2 li {
+  font-size: 19px;
+  color: #dcdcdc;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 10px 0;
+  line-height: 1.8;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.info-section2 li strong {
+  color: #fff;
+  transition: color 0.3s ease;
+}
+
+.info-section2 li:hover {
+  color: #fff;
+  transform: translateX(6px);
+}
+
+.info-section2 li:hover strong {
+  color: #d2d2d2;
+}
