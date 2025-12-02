@@ -16,14 +16,17 @@ async function initPool() {
 
 initPool();
 
-async function executeQuery(sql, params = []) {
+async function executeQuery(sql, params = {}) {
     let connection;
     try {
         connection = await oracledb.getConnection();
+
         const result = await connection.execute(sql, params, {
-            outFormat: oracledb.OUT_FORMAT_OBJECT
+            outFormat: oracledb.OUT_FORMAT_OBJECT,
+            autoCommit: true 
         });
-        return result.rows;
+
+        return result;
     } catch (err) {
         console.error("SQL Error:", err);
         return null;
